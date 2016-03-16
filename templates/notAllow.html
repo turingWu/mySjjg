@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body style="background-color: #edeff1;">
+<h2>导航栏管理接口已关闭，请直接信息管理栏下面的模块进行信息修改。</h2>
+<a href="{% if url %}{{ url }}{% else %}{{ request.META.HTTP_REFERER }}{% endif %}">点击返回</a>
+</body>
+</html>

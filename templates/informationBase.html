@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block pageCss %}
+        <link rel="stylesheet" href="{% static 'css/component/layout.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/page/testInline.css' %}"/>
+    <style>
+        #container .content-side .active{
+        display: inline-block;
+        width: 5px;
+        height: 50px;
+        background: #395d20;
+        position: absolute;
+        left: -5px;
+            top: {{ top }}px;
+    }
+
+    #container .contentDiv{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 35px;
+        color: #444;
+    }
+    #container .contentDiv img{
+        padding: 8px;
+        margin: 0 25px 10px 0;
+        border: 1px solid #bf86bd;
+        border-radius: 5px;
+    }
+    #container .content-main .publishUl{
+    width: 100%;
+    }
+    #container .content-main .publishUl li{
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dddddd;
+    }
+    #container .content-main .publishUl li a{
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 14px;
+
+    color: #777777;
+    }
+    #container .content-main .publishUl li a:hover{
+    color: #bf86bd;
+    }
+	/*分页效果*/
+#pagination{ float:right; margin:10px 0; }
+#pagination-flickr li { border:0; margin:0; padding:0; font-size:11px; list-style:none; /* savers */ float:left; }
+#pagination-flickr a { border:solid 1px #DDDDDD; margin-right:2px; }
+#pagination-flickr .previous-off,#pagination-flickr .next-off { color:#666666; display:block; float:left; font-weight:bold; padding:3px 4px; }
+#pagination-flickr .next a,#pagination-flickr .previous a { font-weight:bold; border:solid 1px #FFFFFF; }
+#pagination-flickr .active { color:#ff0084; font-weight:bold; display:block; float:left; padding:4px 6px; }
+#pagination-flickr a:link,
+#pagination-flickr a:visited { color:#0063e3; display:block; float:left; padding:3px 6px; text-decoration:none; }
+#pagination-flickr a:hover { border:solid 1px #000; background:#0063DC; color:#FFF; }
+/*分页效果end*/
+    </style>
+{% endblock %}
+{% block content %}
+    <div id="container">
+    <div class="content-top"></div>
+    <div class="content-side">
+        <h4>{{ title }}</h4>
+        <ul>
+            <span class="active"></span>
+            {% for foo in navList %}
+                <li><a href="{% url 'homepage' %}/{{ root }}/{{ forloop.counter }}" >{{ foo }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="content-main">
+        <div class="location"><span>首页-{{ title }}-{{ nodeText }}</span></div>
+        <div class="title"><h5>{{ nodeText }}</h5></div>
+        {% block contentOfInf %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+    <script type = "text/javascript" src="{% static 'js/component/jquery.js' %}"></script>
+    <script language="JavaScript" charset="utf-8" type = "text/javascript" src="{% static 'js/testInline.js' %}"></script>
+	<script src="{% static 'player/lib/jquery-ui-1.10.0.custom.min.js' %}"></script>
+	<script src="{% static 'player/lib/modernizr.custom.js' %}"></script>
+	<script src="{% static 'player/acornmediaplayer/happy.js' %}"></script>
+	<script>
+		if(window.webshims) {
+			webshims.polyfill('mediaelement');
+		}
+	</script>
+
+	<script src="{% static 'player/acornmediaplayer/jquery.acornmediaplayer.js' %}"></script>
+
+	<!-- Call the plugin -->
+	<script>
+		jQuery(function() {
+			// demo1
+			jQuery('#demo1, #demo1-audio').acornMediaPlayer();
+			// demo2
+			jQuery('#demo2, #demo2-audio').acornMediaPlayer({
+				theme: 'access accesslight'
+			});
+			// demo3
+			jQuery('#demo3, #demo3-audio').acornMediaPlayer({
+				theme: 'darkglass',
+				volumeSlider: 'vertical'
+			});
+			// demo4
+			jQuery('#demo4, #demo4-audio').acornMediaPlayer({
+				theme: 'darkglass darkglasssmall',
+				volumeSlider: 'vertical'
+			});
+			// demo5
+			jQuery('#demo5, #demo5-audio').acornMediaPlayer({
+				theme: 'barebones'
+			});
+			// demo6
+			jQuery('#demo6, #demo6-audio').acornMediaPlayer({
+				theme: 'barebones',
+				nativeSliders: true
+			});
+		});
+	</script>
+
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-19824700-1', 'ghinda.net');
+	ga('send', 'pageview');
+	</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: url("../../images/login-bg.jpg") no-repeat center;
+}
+#myform{
+    background: rgba(0,0,0,0.5);
+    /*解决IE6-IE8不兼容rgba（）属性的问题*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);
+
+    margin: 50px auto 0;
+    width: 500px;
+    padding: 20px 0 50px;
+
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 10px;
+}
+#myform p{
+    margin-top: 30px;
+
+
+}
+#myform label{
+    font-family: 'Comic Sans MS', cursive,"Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    margin-left: 30px;
+    font-size: 14px;
+    color: #EEEEEE;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+#myform input{
+    display: inline-block;
+    position: absolute;
+    left: 140px;
+    font-family: 'Microsoft YaHei', Tahoma, Geneva, sans-serif;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s ;
+    font-size: 14px;
+    color: #4d4f52;
+    height: 35px;
+    width: 250px;
+    /*float: right;*/
+    border: 1px solid #c9cccf;
+    text-align: center;
+    border-radius: 5px;
+}
+#myform input:focus{
+    -webkit-box-shadow:  0 0 10px #bf86bd;
+    -moz-box-shadow:  0 0 10px #bf86bd;
+    box-shadow:  0 0 10px #bf86bd;
+}
+
+#myform span{
+    position: absolute;
+    left: 410px;
+    display: inline-block;
+    font-size: 12px;
+    color: #e7e7e7;
+    margin-top: 10px;
+}
+
+#myform p .reg{
+    width: 250px;
+
+    border-radius: 5px;
+    font-size: 14px;
+    color: #f0fff0;
+    cursor: pointer;
+    height: 40px !important;
+    background: transparent;
+    border: 1px solid #f0fff0;
+    transition: all 0.4s;
+    -moz-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+
+}
+#myform p .reg:hover{
+    border: 1px solid #bf86bd;
+    background: #bf86bd;
+    color: #ffffff;
+}
+#footer{
+    margin-top: 10px !important;
+}

@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<link href="{% static 'css/page/login.css' %}" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="main">
+
+		<p></p>
+
+			<form action="" method="post">
+                {% csrf_token %}
+					<input type="text" class='inputs' name="studentId" placeholder="输入学号" required/>
+					<input type="password" name="password" class='inputs' placeholder="输入密码" required/>
+					<input  type="hidden" name="source_url" value="{% if url %}{{ url }}{% else %}{{ request.META.HTTP_REFERER }}{% endif %}" />
+                    <input  type="submit" value="登陆" class="btn" />
+            <a href="{{ request.META.HTTP_REFERER }}">返回</a>
+                    <a class = 'reg' href="/reg/">还未注册</a>
+                    <div id = 'login-message'>{{ reason }}</div>
+			</form>
+	</div>
+</body>
+</html>

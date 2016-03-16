@@ -1,0 +1,136 @@
+
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block pageCss %}
+        <link rel="stylesheet" href="{% static 'css/component/layout.css' %}"/>
+
+    <style>
+        #container .content-side .active{
+        display: inline-block;
+        width: 5px;
+        height: 50px;
+        background: #ff5a08;
+        position: absolute;
+        left: -5px;
+            top: 20px;
+    }
+
+    #container .contentDiv{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 35px;
+        color: #444;
+    }
+    #container .contentDiv img{
+        padding: 8px;
+        margin: 0 25px 10px 0;
+        border: 1px solid #bf86bd;
+        border-radius: 5px;
+    }
+    #container .content-main .publishUl{
+    width: 100%;
+    }
+    #container .content-main .publishUl li{
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dddddd;
+    }
+    #container .content-main .publishUl li a{
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 14px;
+
+    color: #777777;
+    }
+    #container .content-main .publishUl li a:hover{
+    color: #bf86bd;
+    }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div id="container">
+    <div class="content-top"></div>
+    <div class="content-side">
+        <h4>{{ title }}</h4>
+        <ul>
+            <span class="active"></span>
+                <li><a href="{% url 'homework' %}" >互动平台</a></li>
+        </ul>
+    </div>
+    <div class="content-main">
+        <div class="location"><span>首页-互动平台</span></div>
+        <div class="title"><h5>{{ nodeText }}</h5></div>
+        <div>
+        {% if commentList %}
+    {% for foo in commentList %}
+        <div class="commentList">
+        <div id="comment-" class="note-comment clearfix">
+            <div class="content">
+                <div class="meta-top">
+                    <p>
+                        <a class="author-name">{{ foo.user.username }}:</a>
+                    </p>
+                    <p class="commentMain">
+                        {{ foo.content }}
+                    </p>
+
+
+                    <span class="reply-time">
+                        <small>{{ forloop.counter }}th· </small>
+                        <a>{{ foo.commentDate }}</a>
+
+                    </span>
+                    {% if is_admin %}
+                    <a href="">{{ stringList.1 }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+            {% if foo.recomment_set.all %}
+                {% for foo2 in foo.recomment_set.all %}
+                    <div class="commentList">
+                    {{ stringList.1 }}:{{ foo.user.username }}:
+                    <p>{{ foo2.content }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+    </div>
+    {% endfor %}
+            <div id="pagination">
+            <ul id="pagination-flickr">
+            {% if commentList.has_previous %}
+            <li class="previous"><a href="?page={{ commentList.previous_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}{% if request.GET.cid %}&cid={{ request.GET.cid }}{% endif %}">&laquo;{{ pre }}</a></li>
+            {% else %}
+            <li class="previous-off">&laquo;{{ pre }}</li>
+            {% endif %}
+             <li class="active">{{ commentList.number }}/{{ commentList.paginator.num_pages }}</li>
+            {% if commentList.has_next %}
+              <li class="next"><a href="?page={{ commentList.next_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}{% if request.GET.cid %}&cid={{ request.GET.cid }}{% endif %}">{{ next }} &raquo;</a></li>
+            {% else %}
+              <li class="next-off">{{ next }}&raquo;</li>
+            {% endif %}
+           </ul>
+        </div>
+    {% endif %}
+    <div class="commentDiv">
+
+    <form  method="post" action="{% url 'comment' %}">
+                {% csrf_token %}
+            <textarea rows="10" cols="30" class="w-commentArea" name="content" placeholder="文明上网，不传谣言，登录评论"></textarea>
+        <div class="w-submitBar" >
+            <input type="submit" class="w-submitBtn" value="发表评论"/>
+        </div>
+    </form>
+    </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

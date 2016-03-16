@@ -1,0 +1,146 @@
+{% extends 'informationBase.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block contentOfInf %}
+    <div class="new-div">
+<h2 class="new-title">{{ myTests.num|safe }}--{{ myTests.testName|safe }}</h2>
+    <form action="{% url 'getTest'%}" method="get" class="testForm" onsubmit="return isChecked('testChoice')">
+        <input type="hidden" value="{{ myTests.num }}" name="testId"/>
+        {% if choiceList2 %}
+            {% for foo,k in choiceList2 %}
+                         <p> {{ foo.num }}.{{ foo.question }}</p>
+                <ul class = 'testChoice'>
+                {% if foo.choice_A %}
+                    <li><span><label><input type="radio" value = 'A' name="{{ foo.num }}-choice"/>A:{{ foo.choice_A }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_B %}
+                    <li><span><label><input type="radio" value = "B" name="{{ foo.num }}-choice"/>B:{{ foo.choice_B }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_C %}
+                    <li><span><label><input type="radio" value = "C" name="{{ foo.num }}-choice"/>C:{{ foo.choice_C }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_D %}
+                    <li><span><label><input type="radio" value = "D" name="{{ foo.num }}-choice"/>D:{{ foo.choice_D }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_E %}
+                    <li><span><label><input type="radio" value = "E" name="{{ foo.num }}-choice"/>E:{{ foo.choice_E }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_F %}
+                    <li><span><label><input type="radio" value = "F" name="{{ foo.num }}-choice"/>F:{{ foo.choice_F }}</label></span></li>
+                {% endif %}
+                <p class="correct">
+                    {% if endTest %}
+                        {{ stringList.5 }}:{{ foo.correct }}
+                        {{ stringList.9 }}:{{ k }}
+                    {% endif %}
+                </p>
+                </ul>
+            {% endfor %}
+            {% else %}
+            <h4>{{ stringList.1 }}</h4>
+            {% for foo in choiceList %}
+                         <p> {{ foo.num }}.{{ foo.question }}</p>
+                <ul class = 'testChoice'>
+                {% if foo.choice_A %}
+                    <li><span><label><input type="radio" value = 'A' name="{{ foo.num }}-choice"/>A:{{ foo.choice_A }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_B %}
+                    <li><span><label><input type="radio" value = "B" name="{{ foo.num }}-choice"/>B:{{ foo.choice_B }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_C %}
+                    <li><span><label><input type="radio" value = "C" name="{{ foo.num }}-choice"/>C:{{ foo.choice_C }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_D %}
+                    <li><span><label><input type="radio" value = "D" name="{{ foo.num }}-choice"/>D:{{ foo.choice_D }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_E %}
+                    <li><span><label><input type="radio" value = "E" name="{{ foo.num }}-choice"/>E:{{ foo.choice_E }}</label></span></li>
+                {% endif %}
+                {% if foo.choice_F %}
+                    <li><span><label><input type="radio" value = "F" name="{{ foo.num }}-choice"/>F:{{ foo.choice_F }}</label></span></li>
+                {% endif %}
+               <!-- <p class="correct">
+                    {% if endTest %}
+                        {{ stringList.5 }}:{{ foo.correct }}
+                        {{ k }}
+                    {% endif %}
+                </p>-->
+                </ul>
+            {% endfor %}
+
+        {% endif %}
+        {% if boolList2 %}
+            {% for foo,k in boolList2 %}
+                           <p>{{ foo.num }}.{{ foo.question }}</p>
+                <p class="testChoice">
+                <label>Yes<input type="radio" value="1" name="{{ foo.num }}-radio"/></label>
+                <label>No<input type="radio" value="0" name="{{ foo.num }}-radio"/></label>
+                </p>
+                <p class="correct">
+                    {% if endTest %}
+                        {{ stringList.5 }}:{{ foo.correct }}
+                        {{ stringList.9 }}:{{ k }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+            {% else %}
+            <h4>{{ stringList.2 }}</h4>
+            {% for foo in boolList %}
+                           <p>{{ foo.num }}.{{ foo.question }}</p>
+                <p class="testChoice">
+                <label>Yes<input type="radio" value="1" name="{{ foo.num }}-radio"/></label>
+                <label>No<input type="radio" value="0" name="{{ foo.num }}-radio"/></label>
+                </p>
+                <p class="correct">
+                    {% if endTest %}
+                        {{ stringList.5 }}:{{ foo.correct }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        {% endif %}
+        {% if answerList2 %}
+            <h4>{{ stringList.3 }}</h4>
+            {% for foo,k in answerList2 %}
+                <p>{{ foo.num }}.{{ foo.question }}</p>
+                <p>
+                <label class="no_green"><textarea class="answerArea" name="answerArea-{{ forloop.counter }}"></textarea></label>
+                </p>
+                <p class="correct">
+                    {% if endTest %}
+                        {{ stringList.5 }}:{{ foo.correct }}
+                        </br>
+                        {{ stringList.9 }}:{{ k }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+            {% else %}
+            <h4>{{ stringList.3 }}</h4>
+            {% for foo in answerList %}
+                <p>{{ foo.num }}.{{ foo.question }}</p>
+                <p>
+                <label class="no_green"><textarea class="answerArea" name="answerArea-{{ forloop.counter }}"></textarea></label>
+                </p>
+                <p class="correct">
+                    {% if endTest %}
+                        {{ stringList.5 }}:{{ foo.correct }}
+                        {{ stringList.9 }}:{{ k }}
+                    {% endif %}
+                </p>
+
+            {% endfor %}
+        {% endif %}
+    {% if endTest %}
+
+        {{ stringList.6 }}{{ score }}
+        {{ stringList.7 }}:{{ maxScore }}
+        <div>
+        {{ stringList.8 }}
+        </div>
+    {% endif %}
+    <input type="submit" value="{{ stringList.4 }}" class="test-go" id="test-go"/>
+    </form>
+
+</div>
+
+{% endblock %}

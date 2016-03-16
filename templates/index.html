@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+{% block pageCss %}
+    <link rel="stylesheet" href="{% static 'css/page/homepage.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/component/Slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/component/Scroll.css' %}"/>
+{% endblock %}
+{% block content %}
+
+<!--主体-->
+<div id="container">
+    <div class="content">
+        <div class="content-top">
+            <div class="slider">
+                <ul class="slider-main">
+                    {% for foo in enrollList %}
+                        <li><a href="{{ foo.src }}"><img src="/upload/{{ foo.obj.image }}" alt=""/></a></li>
+                    {% endfor %}
+
+
+{#                    <li>#}
+{#                        <img src="{% static 'images/3.jpg' %}" alt="">#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <img src="{% static 'images/4.jpg' %}" alt="">#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <img src="{% static 'images/5.jpg' %}" alt="">#}
+{#                    </li>#}
+                </ul>
+            </div>
+            <div class="area0 common common2">
+                <h5><a href="{% url 'information' '2' '1' %}">课程负责人简介</a></h5>
+                <p class="black">{{ bossMess }}...</p>
+            </div>
+        </div>
+
+        <div class="content-main">
+            <div class="area1 common common2">
+                <h5><a href="{% url 'information' '1' '1' %}">课程介绍</a></h5>
+                <div class="bg_img_6"></div>
+                <p class="black">{{ courseMess }}...</p>
+        </div>
+            <div class="area2 common common2">
+                <h5><a href="{% url 'information' '3' '2' %}">理论教学</a></h5>
+                <div class="bg_img_7"></div>
+                <ul>
+                    {% if PPT %}
+                        {% for foo in PPT %}
+                            <li><a href="/index/3/2/{{ forloop.counter }}">{{ foo.fileName }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="area3 common common2">
+                <h5><a href="{% url 'information' '1' '3' %}">实践教学</a></h5>
+                <div class="bg_img_8"></div>
+                <ul>
+                    {% if expList %}
+                        {% for foo in expList %}
+                            <li><a href="/index/1/3/{{ forloop.counter }}">{{ foo.title }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+<div class="content-bottom">
+    <div class="area4 common common2">
+                <h5><a href="{% url 'information' '5' '2'%}">课外活动</a></h5>
+                <div id="Scroll">
+
+                <ul id="imgList" >
+                    {% if coursePlay %}
+                        {% for foo in coursePlay %}
+                            <li><a href="/index/5/2/{{ forloop.counter }}">{{ foo.title|slice:":16" }}...</a></li>
+                        {% endfor %}
+
+                    {% endif %}
+                </ul>
+                </div>
+            </div>
+    <div class="area5 common common2">
+                <h5><a href="{% url 'information' '5' '1'%}">课程公告</a></h5>
+                <ul >
+                {% if coursePublish %}
+                        {% for foo in coursePublish %}
+                            <li><a href="/index/5/1/{{ forloop.counter }}/">{{ foo.title|slice:"16" }}...</a><span class="time">{{ foo.publishDate|date:'y-n-j' }}</span></li>
+                        {% endfor %}
+                {% endif %}
+
+                </ul>
+            </div>
+
+            <div class="area6 common">
+                <div class="system">
+                <a href="{% url 'information' '6' '3' %}">互动平台</a>
+                <a href="{% url 'information' '4' '4' %}">在线测试</a>
+                <a href="{% url 'homework' %}">作业提交</a>
+                <a href="{% url 'login' %}">学生登陆</a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!--主体-end-->
+{% endblock %}

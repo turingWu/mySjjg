@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="{% static 'css/page/enroll.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/component/footer.css' %}"/>
+
+</head>
+<body>
+<form id="myform">
+    <!--<input type="hidden" value="68h2NPNp8xBqkKj8GZMKnYz9vJZsWDTR" name="csrfmiddlewaretoken">-->
+    {% csrf_token %}
+    {{ regF.as_p }}
+    <p>
+        <input type="hidden" value="{{ request.META.HTTP_REFERER }}" name="myUrl" />
+        <input type="submit" value="注册" class = 'reg' />
+    </p>
+</form>
+<!--尾部-->
+<!--尾部-end-->
+<script src="{% static 'js/component/jquery.js' %}"></script>
+<script src="{% static 'js/component/validate.js' %}"></script>
+
+</body>
+</html>

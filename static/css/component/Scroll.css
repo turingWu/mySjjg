@@ -1,0 +1,20 @@
+#Scroll{
+    position: relative;
+    top: 10px;
+    overflow: hidden;
+    width: 100%;
+
+}
+#imgList{
+    position: absolute;
+    top: 0;
+    /*transition: all 0.00001s;*/
+    /*-moz-transition: all 0.00001s;*/
+    /*-webkit-transition: all 0.00001s;*/
+}
+#Scroll ul{
+    margin: auto;
+}
+#Scroll ul li{
+    height: 35px;
+}

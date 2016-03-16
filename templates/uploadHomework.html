@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block pageCss %}
+        <link rel="stylesheet" href="{% static 'css/component/layout.css' %}"/>
+
+    <style>
+        #container .content-side .active{
+        display: inline-block;
+        width: 5px;
+        height: 50px;
+        background: #ff5a08;
+        position: absolute;
+        left: -5px;
+            top: {{ top }}px;
+    }
+
+    #container .contentDiv{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 35px;
+        color: #444;
+    }
+    #container .contentDiv img{
+        padding: 8px;
+        margin: 0 25px 10px 0;
+        border: 1px solid #bf86bd;
+        border-radius: 5px;
+    }
+    #container .content-main .publishUl{
+    width: 100%;
+    }
+    #container .content-main .publishUl li{
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dddddd;
+    }
+    #container .content-main .publishUl li a{
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 14px;
+
+    color: #777777;
+    }
+    #container .content-main .publishUl li a:hover{
+    color: #bf86bd;
+    }
+
+    </style>
+    <link rel="stylesheet" href="{% static 'css/component/upHomework.css' %}"/>
+{% endblock %}
+{% block content %}
+    <div id="container">
+    <div class="content-top"></div>
+    <div class="content-side">
+        <h4>{{ title }}</h4>
+        <ul>
+            <span class="active"></span>
+                <li><a href="{% url 'homework' %}" >作业上传</a></li>
+        </ul>
+    </div>
+    <div class="content-main">
+        <div class="location"><span>首页-作业上传</span></div>
+        <div class="title"><h5>{{ nodeText }}</h5></div>
+        <p class="pWarning"><strong>请按要求提交:</strong></p>
+        <div class="upHomeworkDiv">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        {{ upForm.as_p }}
+        <p><input class="uploadBtn" type="submit" value="上传"/></p>
+    </form>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{% endblock %}

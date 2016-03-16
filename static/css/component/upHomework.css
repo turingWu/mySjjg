@@ -1,0 +1,39 @@
+.pWarning{
+    margin: 20px auto;
+    text-align: center;
+}
+.upHomeworkDiv p{
+    margin: 20px;
+    text-align: center;
+}
+.upHomeworkDiv{
+    width: 100%;
+    min-height: 200px;
+    margin: auto;
+}
+.upHomeworkDiv #id_content{
+    cursor: pointer;
+    border: 1px solid rgba(79, 169, 230, 0.67);
+    width: 200px;
+    border-radius: 2px;
+}
+.upHomeworkDiv #id_homeworkName{
+    width: 200px;
+    height: 30px;
+    border: 1px solid #c9cccf;
+
+}
+.upHomeworkDiv .uploadBtn{
+    width: 150px;
+    height: 30px;
+    background: rgba(114, 187, 67, 0.45);
+    border: 1px solid #c9cccf;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.5s;
+    margin-left: 60px;
+}
+.upHomeworkDiv .uploadBtn:hover{
+    color: #ffffff;
+    background: #395d20;
+}

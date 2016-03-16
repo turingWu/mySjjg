@@ -1,0 +1,82 @@
+{% extends 'informationBase.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block contentOfInf %}
+    {% if not errors %}
+            {{ errors }}
+    {% endif %}
+    <div style="margin: 30px auto;" class="contentDiv">
+        <div>
+    {% if contentObj %}
+        {{ contentObj.content|safe }}
+    {% else %}
+        {% if newContentObj %}
+
+        {% endif %}
+        {% if publishList %}
+                <ul class="publishUl">
+                {% for foo in publishList %}
+                <li><a href='/index/{{ root }}/{{ node }}/{{ forloop.counter }}/?page = {{ page }}'>{{ foo.title|safe }}{{ foo.fileName|safe }}{{ foo.num }} . {{ foo.testName }}</a></li>
+                {% endfor %}
+
+            </ul>
+        <div id="pagination">
+            <ul id="pagination-flickr">
+            {% if publishList.has_previous %}
+            <li class="previous"><a href="?page={{ publishList.previous_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}{% if request.GET.cid %}&cid={{ request.GET.cid }}{% endif %}">&laquo;{{ pre }}</a></li>
+            {% else %}
+            <li class="previous-off">&laquo;{{ pre }}</li>
+            {% endif %}
+             <li class="active">{{ publishList.number }}/{{ publishList.paginator.num_pages }}</li>
+            {% if publishList.has_next %}
+              <li class="next"><a href="?page={{ publishList.next_page_number }}{% if request.GET.year %}&year={{ request.GET.year }}{% endif %}{% if request.GET.month %}&month={{ request.GET.month }}{% endif %}{% if request.GET.cid %}&cid={{ request.GET.cid }}{% endif %}">{{ next }} &raquo;</a></li>
+            {% else %}
+              <li class="next-off">{{ next }}&raquo;</li>
+            {% endif %}
+           </ul>
+        </div>
+
+
+        {% else %}
+            {% if newPublishList %}
+                {% if only %}
+                    <div class="new-div">
+                    <h2 class="new-title">{{ newTitle|safe }}</h2>
+                        <p class="new-time">{{ newDate|date:'Y F j'}}</p>
+
+                        <p class="new-content">
+
+                            {{ contents|safe }}
+
+                        </p>
+                    </div>
+                {% else %}
+                    {% for foo in newPublishList %}
+                    <ul class="publishUl">
+                    <li><a href='/index/{{ root }}/{{ node }}/{% if foo.num %}{{ foo.num }}{% else %}{{ forloop.counter }}{% endif %}/'>{{ foo.title|safe }}<span style="float: right;">{{ foo.publishDate }}</span></a></li>
+                   </ul>
+                {% endfor %}
+                {% endif %}
+
+
+            {% endif %}
+            {% if errors %}
+                {{ errors }}
+            {% else %}
+                {{ noContent }}
+            {% endif %}
+            {% if fileName %}
+                <div class="only-only">
+                <p>{{ fileName }}</p>
+                    <li><img src="{% static 'images' %} {{ bottom }}/1.png"/></li>
+                <a href="http://{{ request.get_host }}/upload/{{ fileUrl }}">download</a>
+                </div>
+            {% endif %}
+
+        {% endif %}
+
+    {% endif %}
+        </div>
+    </div>
+{% endblock %}

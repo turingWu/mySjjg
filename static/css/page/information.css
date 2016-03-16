@@ -1,0 +1,19 @@
+#container .content-main .content ul{
+    width: 100%;
+}
+#container .content-main .content li{
+    margin-top: 10px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dddddd;
+}
+#container .content-main .content li a{
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #777777;
+}
+#container .content-main .content li a:hover{
+    color: #bf86bd;
+}
+

@@ -1,0 +1,16 @@
+{% extends 'informationBase.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block contentOfInf %}
+    <div class="new-div">
+<h2 class="new-title">{{ newTitle|safe }}</h2>
+    <p class="new-time">{{ newDate|date:'Y F j'}}</p>
+
+    <p class="new-content">
+
+        {{ contents|safe }}
+
+    </p>
+</div>
+{% endblock %}

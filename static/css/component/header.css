@@ -1,0 +1,110 @@
+/***头部***/
+
+#header{
+    width: 100%;
+    height: 150px ;
+}
+#header .header-content{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#header .header-top{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+#header .logo{
+    float: left;
+    margin-top: 5px;
+    margin-left: 180px;
+    width: 800px;
+    height: 100%;
+    background: url("../../images/logo3.png") no-repeat;
+}
+#header .log_reg{
+    display: inline-block;
+    position: absolute;
+    right: 150px;
+    top: 60px;
+}
+#header .log_reg .b_r{
+    padding-right: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    display: inline-block;
+    width: 50px;
+    color: #22132D;
+}
+#header .log_reg .b_r{
+    border-right: 1px solid #22132D;
+}
+#header .log_reg a:hover{
+    color: #486333;
+}
+/*菜单区域*/
+#menu{
+    width: 100%;
+    height: 60px ;
+    position: relative;
+    background: #486333;
+}
+#menu .nav{
+    position: absolute;
+    left: 200px;
+}
+#menu .nav li{
+    width: 140px;
+    list-style-type: none;
+    float: left;
+}
+#menu .nav a{
+    display: inline-block;
+    height: 60px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    line-height: 60px;
+    color: rgb(217, 244, 206);
+    width: 140px;
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+#menu .nav a:hover{
+    background: #2b4c1d;
+    color: #ffffff;
+}
+#menu .child-nav{
+    background: #395d20;
+    width: 140px;
+    position: absolute;
+    z-index: 100;
+    left: -9999px;
+}
+#menu .nav li:hover .child-nav{
+    left: auto;
+}
+#menu .child-nav li{
+    width: 140px;
+}
+#menu .child-nav li a{
+    color: #ffffff;
+    border-left: none;
+    font-size: 13px;
+    display: block;
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+}
+#menu .child-nav li a:hover{
+    background: #2fb270;
+    color: #ffffff;
+}
+/*菜单区域-end*/
+
+
+/***头部-end***/

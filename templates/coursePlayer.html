@@ -1,0 +1,34 @@
+{% extends 'informationBase.html' %}
+{% load staticfiles %}
+{% load url from future %}
+
+{% block contentOfInf %}
+    {% if not fileUrl %}
+        <embed src="{{ fileYouUrl }}" quality="high" width="580" height="500" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent"
+                        type="application/x-shockwave-flash"></embed>
+    {% else %}
+        <link href="{% static 'player/acornmediaplayer/acornmediaplayer.base.css' %}" rel="stylesheet" type="text/css">
+	<!-- Themes -->
+	<link href="{% static 'player/acornmediaplayer/themes/access/acorn.access.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'player/acornmediaplayer/themes/darkglass/acorn.darkglass.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'player/acornmediaplayer/themes/barebones/acorn.barebones.css' %}" rel="stylesheet" type="text/css">
+        <section>
+		<figure>
+			<video id="demo1" controls="controls" width="526" height="360" preload="metadata" aria-describedby="full-descript">
+				<source type="video/mp4" src="/upload/a.mp4" />
+                <track src="{% static 'player/subs/TOS-arabic.srt' %}" kind="subtitles" srclang="ar" label="Arabic" />
+				<track src="{% static 'player/subs/TOS-japanese.srt' %}" kind="subtitles" srclang="jp" label="Japanese" />
+				<track src="{% static 'player/subs/TOS-english.srt' %}" kind="subtitles" srclang="en" label="English" />
+				<track src="{% static 'player/subs/TOS-turkish.srt' %}" kind="subtitles" srclang="tr" label="Turkish" />
+				<track src="{% static 'player/subs/TOS-ukrainian.srt' %}" kind="subtitles" srclang="uk" label="Ukrainian" />
+			</video>
+			<figcaption id="full-descript">
+				<p><em></em></p>
+			</figcaption>
+		</figure>
+	</section>
+
+    {% endif %}
+
+
+{% endblock %}

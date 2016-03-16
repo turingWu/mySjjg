@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>联系我们</title>
+    <link rel="stylesheet" href="{% static 'css/connectUs.css' %}"/>
+
+</head>
+<body>
+<div id="mainDiv">
+<div class="commentDiv">
+<form action="{% url 'connect' %}" method="post">
+    {% csrf_token %}
+        <h3 class="comment-title">联系我们</h3>
+        <textarea name = "content" class="co-text" contenteditable="true" placeholder="感谢您的意见反馈：）" role="10" cols="30"></textarea>
+
+        <div class="comment-tell">
+        <i class="fa-user"></i>
+        联系方式
+        <input id="go-to" class = 'connect' type="text" name="connect" placeholder="手机号 / QQ / 邮箱" size="1">
+        </div>
+    <span class="notice">
+        <i class="fa fa-info-circle"></i>
+        留下您的联系方式，方便工作人员与您取得联系。
+        </span>
+        <input class="btn-success" type="submit" value="提交" name="commit">
+</form>
+    </div>
+</div>
+</body>
+</html>
